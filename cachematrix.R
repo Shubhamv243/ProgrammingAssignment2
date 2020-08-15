@@ -5,12 +5,16 @@
 
 makeCacheMatrix <- function(x = matrix()) {
   I <- NULL
+  ##set the value of the vector
   set <- function(y){
     x<<-y
     I<<-NULL
   }
+  ##get the value of the vector
   get <- function()   x
+  ##set the value of the inverse
   setinv <- function(inverse) I<<-inverse
+  ##get the value of the inverse
   getinv <- function() I
   
   list(set = set, get=get,
@@ -30,6 +34,10 @@ cacheSolve <- function(x, ...) {
   data <- x$get()
   inverse <- solve(data,...)
   x$setinv(inverse)
-  I
+  inverse
   ## Return a matrix that is the inverse of 'x'
 }
+##Sample solution
+x<- matrix(1:4,2,2)
+makeCacheMatrix(x)
+cacheSolve(x)
